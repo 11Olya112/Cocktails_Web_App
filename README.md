@@ -1,4 +1,4 @@
-# React TypeScript Starter Pack
+# Cocktails_Web_App
 
 To use this template click `Use this template`
 
