@@ -1,27 +1,18 @@
 import React from 'react';
 import './App.scss';
-
-interface Props {
-  onClick: () => void;
-}
-
-export const Provider: React.FC<Props> = React.memo(
-  ({ onClick, children }) => (
-    <button
-      type="button"
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  ),
-);
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Sign } from './components/Sign-in';
+import { Register } from './components/Register';
+import { Home } from './components/Home';
 
 export const App: React.FC = () => {
   return (
-    <div className="starter">
-      <Provider onClick={() => ({})}>
-        <TodoList />
-      </Provider>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Sign />}></Route>
+        <Route path="/register" element={<Register />}></Route>
+        <Route path="/home" element={<Home />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
