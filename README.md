@@ -1,4 +1,4 @@
-# Cocktails_Web_App
+# Cocktails Web App
 
 To use this template click `Use this template`
 
