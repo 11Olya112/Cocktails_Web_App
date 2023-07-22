@@ -52,6 +52,7 @@ export const CardsList: React.FC<Props> = ({
         {' '}
         items
       </p>
+      <br />
 
       <Columns className="is-flex-wrap-wrap">
         {visibleCards.map((item) => (
@@ -61,15 +62,18 @@ export const CardsList: React.FC<Props> = ({
         ))}
       </Columns>
 
-      {cards.length > visibleCount && (
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Columns>
-          <Columns.Column>
-            <Button color="primary" onClick={handleShowMore} className="is-centered is-large">
-              Show more
-            </Button>
+          <Columns.Column className="ml-5">
+            {cards.length > visibleCount && (
+              <Button color="primary" onClick={handleShowMore} className="is-large is-fullwidth">
+                Show more
+              </Button>
+            )}
           </Columns.Column>
         </Columns>
-      )}
+      </div>
+
     </div>
   );
 };

@@ -15,7 +15,7 @@ type Props = {
 export const ItemCard: React.FC<Props> = ({ item, handleLikeClick, liked }) => {
   return (
     <Card className="is-fullheight">
-      <Card.Content>
+      <Card.Content className="is-flex-direction-column has-min-height-0">
         <Level>
           <Level.Side align="left" className="is-flex is-justify-content-space-between">
             <div className="card-heading">
@@ -38,22 +38,50 @@ export const ItemCard: React.FC<Props> = ({ item, handleLikeClick, liked }) => {
             </div>
           </Media.Item>
         </Media>
+
         <Content mt={4}>
           <div className="category">
-            <p>Category</p>
-            <p className="is-size-6">
-              <span className="has-text-weight-bold">{item.strCategory}</span>
-              {' '}
-              <span>{item.strArea}</span>
-              <span className="has-text-grey-light">,</span>
-              {' '}
-              <span>{item.strTags}</span>
-              <span className="has-text-grey-light">,</span>
-              {' '}
-              <span>{item.strGlass}</span>
-            </p>
+            <div className="columns is-mobile is-multiline is-flex-wrap-wrap">
+              {item.strCategory && (
+                <div className="column is-narrow is-half-mobile is-one-quarter-tablet">
+                  <span className="is-block has-text-weight-bold is-size-6 has-text-dark">
+                    Category:
+                    {' '}
+                    {item.strCategory}
+                  </span>
+                </div>
+              )}
+              {item.strArea && (
+                <div className="column is-narrow is-half-mobile is-one-quarter-tablet">
+                  <span className="is-block has-text-weight-bold is-size-6 has-text-dark">
+                    Area:
+                    {' '}
+                    {item.strArea}
+                  </span>
+                </div>
+              )}
+              {item.strTags && (
+                <div className="column is-narrow is-half-mobile is-one-quarter-tablet">
+                  <span className="is-block has-text-weight-bold is-size-6 has-text-dark">
+                    Tags:
+                    {' '}
+                    {item.strTags}
+                  </span>
+                </div>
+              )}
+              {item.strGlass && (
+                <div className="column is-narrow is-half-mobile is-one-quarter-tablet">
+                  <span className="is-block has-text-weight-bold is-size-6 has-text-dark">
+                    Glass:
+                    {' '}
+                    {item.strGlass}
+                  </span>
+                </div>
+              )}
+            </div>
           </div>
         </Content>
+
         <Content mt={4}>
           <div className="buttons">
             <Button color="primary" className="is-rounded is-fullwidth">Details</Button>
