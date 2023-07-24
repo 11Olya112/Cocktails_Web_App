@@ -10,7 +10,7 @@ app.use(express.json());
 const dbConfig = {
   host: 'bzsi8ice5jiccughxczf-mysql.services.clever-cloud.com',
   user: 'ul8fq0qpnoohe25l',
-  password: 'ul8fq0qpnoohe25l',
+  password: 'fPNFXSLfalMtWOce4FlR',
   database: 'bzsi8ice5jiccughxczf',
   port: '3306',
 };
@@ -40,15 +40,6 @@ connection.connect((err) => {
 // Perform queries and other database operations here
 
 // Close the connection when done
-connection.end((err) => {
-  if (err) {
-    // eslint-disable-next-line no-console
-    console.error('Error closing the connection:', err);
-  } else {
-    // eslint-disable-next-line no-console
-    console.log('Connection closed successfully!');
-  }
-});
 
 /* const db1 = mysql.createConnection({
   host: 'localhost',
@@ -71,14 +62,10 @@ connection.end((err) => {
 }); */
 
 app.post('/register', (req, res) => {
-  const sql = 'INSERT INTO login (`name`, `email`, `password`) VALUES (?)';
-  const values = [
-    req.body.name,
-    req.body.emailSecond,
-    req.body.passwordSecond,
-  ];
+  const sql = 'INSERT INTO login (`name`, `email`, `password`) VALUES (?, ?, ?)';
+  const values = [req.body.name, req.body.emailSecond, req.body.passwordSecond];
 
-  connection.query(sql, [values], (err, result) => {
+  connection.query(sql, values, (err, result) => {
     if (err) {
       // eslint-disable-next-line no-console
       console.error('Помилка виконання запиту до бази даних:', err);
