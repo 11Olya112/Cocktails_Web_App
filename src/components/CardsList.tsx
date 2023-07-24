@@ -66,14 +66,13 @@ export const CardsList: React.FC<Props> = ({
         <Columns>
           <Columns.Column className="ml-5">
             {cards.length > visibleCount && (
-              <Button color="primary" onClick={handleShowMore} className="is-large is-fullwidth">
+              <Button color="primary" onClick={handleShowMore} className="is-large is-fullwidth is-expanded">
                 Show more
               </Button>
             )}
           </Columns.Column>
         </Columns>
       </div>
-
     </div>
   );
 };

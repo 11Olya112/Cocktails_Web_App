@@ -1,5 +1,5 @@
 import express from 'express';
-import mysql from 'mysql2';
+import mysql from 'mysql';
 import cors from 'cors';
 
 const app = express();
@@ -7,23 +7,58 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'signup',
-  port: 3307,
+const dbConfig = {
+  host: 'bzsi8ice5jiccughxczf-mysql.services.clever-cloud.com',
+  user: 'ul8fq0qpnoohe25l',
+  password: 'ul8fq0qpnoohe25l',
+  database: 'bzsi8ice5jiccughxczf',
+  port: '3306',
+};
+
+/* const db = mysql.createConnection({
+  host: 'bzsi8ice5jiccughxczf-mysql.services.clever-cloud.com',
+  user: 'ul8fq0qpnoohe25l',
+  password: 'ul8fq0qpnoohe25l',
+  database: 'bzsi8ice5jiccughxczf',
+}); */
+
+const connection = mysql.createConnection(dbConfig);
+
+// Connect to the database
+connection.connect((err) => {
+  if (err) {
+    // eslint-disable-next-line no-console
+    console.error('Error connecting to the database:', err);
+
+    return;
+  }
+
+  // eslint-disable-next-line no-console
+  console.log('Connected to the MySQL database!');
 });
 
-const db1 = mysql.createConnection({
+// Perform queries and other database operations here
+
+// Close the connection when done
+connection.end((err) => {
+  if (err) {
+    // eslint-disable-next-line no-console
+    console.error('Error closing the connection:', err);
+  } else {
+    // eslint-disable-next-line no-console
+    console.log('Connection closed successfully!');
+  }
+});
+
+/* const db1 = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
   database: 'mylist',
   port: 3307,
-});
+}); */
 
-db.connect((err) => {
+/* db.connect((err) => {
   if (err) {
     // eslint-disable-next-line no-console
     console.error('Помилка підключення до бази даних:', err);
@@ -33,7 +68,7 @@ db.connect((err) => {
 
   // eslint-disable-next-line no-console
   console.log('Підключення до бази даних успішне');
-});
+}); */
 
 app.post('/register', (req, res) => {
   const sql = 'INSERT INTO login (`name`, `email`, `password`) VALUES (?)';
@@ -43,7 +78,7 @@ app.post('/register', (req, res) => {
     req.body.passwordSecond,
   ];
 
-  db.query(sql, [values], (err, result) => {
+  connection.query(sql, [values], (err, result) => {
     if (err) {
       // eslint-disable-next-line no-console
       console.error('Помилка виконання запиту до бази даних:', err);
@@ -61,7 +96,7 @@ app.post('/register', (req, res) => {
 app.post('/sign', (req, res) => {
   const sql = 'SELECT * FROM login WHERE `email` = ? AND `password` = ?';
 
-  db.query(sql, [req.body.email, req.body.password], (err, result) => {
+  connection.query(sql, [req.body.email, req.body.password], (err, result) => {
     if (err) {
       // eslint-disable-next-line no-console
       console.error('Помилка виконання запиту до бази даних:', err);
@@ -77,10 +112,11 @@ app.post('/sign', (req, res) => {
   });
 });
 
-app.post('/add-to-my-list', (req, res) => {
+/* app.post('/add-to-my-list', (req, res) => {
   const { item } = req.body;
 
-  const sql = 'INSERT INTO list (drinkName, category, area, tags, glass, thumbnail) VALUES (?, ?, ?, ?, ?, ?)';
+  const sql = 'INSERT INTO list (drinkName, category, area, tags, glass, thumbnail)
+  VALUES (?, ?, ?, ?, ?, ?)';
   const values = [
     item.strDrink,
     item.strCategory,
@@ -104,9 +140,9 @@ app.post('/add-to-my-list', (req, res) => {
 
     return res.json('Success');
   });
-});
+}); */
 
-app.post('/remove-from-my-list', (req, res) => {
+/* app.post('/remove-from-my-list', (req, res) => {
   const { item } = req.body;
 
   const sql = 'DELETE FROM list WHERE drinkName = ?';
@@ -125,7 +161,7 @@ app.post('/remove-from-my-list', (req, res) => {
 
     return res.json('Success');
   });
-});
+}); */
 
 app.listen(8081, () => {
   // eslint-disable-next-line no-console
