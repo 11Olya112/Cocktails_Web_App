@@ -1,11 +1,10 @@
 # Cocktails Web App
 
-Write here about your project in two-three sentences.
+It's a web application that allows users to log in and view the list of cocktails. All registered users are stored in the database.
 - [DEMO](https://cocktails-web-5cufidem5-11olya112.vercel.app/)
 
 ## Description
 
-It's a web application that allows users to log in and view the list of cocktails. All registered users are stored in the database.
 Technologies: React.js, Express.js, MySQL, Bulma was used for styling.
 
 ### Dependencies
