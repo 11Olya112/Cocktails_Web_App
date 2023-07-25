@@ -18,4 +18,4 @@ Technologies: React.js, Express.js, MySQL, Bulma was used for styling.
 
 ## Troubleshooting
 
-For any contributing or problem solving you could find me [here]().
+For any contributing or problem solving you could find me [here](https://t.me/olya_bush_3).
