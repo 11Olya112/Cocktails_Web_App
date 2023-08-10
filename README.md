@@ -1,7 +1,7 @@
 # Cocktails Web App
 
-It's a mobile application that will allow the user to plot a route from point A to point B, and will also provide information on the distance and approximate time of the route from point A to point B.
-- [DEMO](https://expo.dev/accounts/olya321/projects)
+It's a web application that allows users to log in and view the list of cocktails. All registered users are stored in the database.
+- [DEMO](https://cocktails-web-5cufidem5-11olya112.vercel.app/)
 
 ## Description
 
